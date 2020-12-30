@@ -2,8 +2,10 @@
   height: 100%;
 }
 
-.article--cover {
+.article--image {
+  background-color: #cccccc;  /* Fallback for broken image */ 
   background-size: cover;
+  background-position: center;
 }
 
 .article--info {

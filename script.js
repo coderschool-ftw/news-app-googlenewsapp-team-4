@@ -24,7 +24,7 @@ function renderArticleCard(article) {
   return `
   <div class="col-12 col-lg-4 my-3">
     <div class="card article">
-      <div class="ratio ratio-16x9 article--cover" style="background-image: url(${article.urlToImage});"></div>
+      <div class="ratio ratio-16x9 article--image" style="background-image: url(${article.urlToImage});"></div>
       <div class="card-body">
         <h5 class="card-title">${article.title}</h5>
         <div class="article--info mb-2">
