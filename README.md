@@ -4,7 +4,7 @@ Created with love by: `teammates.map(teammate => teammate.name)`
   
 View online at: `Your URL here`
   
-One or two sentence summary of your project, anything fun that you liked. 
+One or two sentence summary of your project, anything fun that you liked.
 
 ## Video Walkthrough
 
@@ -20,8 +20,8 @@ To create a GIF, use [LiceCap](http://www.cockos.com/licecap/), [RecordIt](http:
 
 The following **required** functionalities are completed (this is a sample):
 
-* [ ] The user can see a list of the 20 latest top news stories, loaded dynamically from our api
-* [ ] For each story, the user sees a headline, the source, a link to more, and an image
+* [x] The user can see a list of the 20 latest top news stories, loaded dynamically from our api
+* [x] For each story, the user sees a headline, the source, a link to more, and an image
 * [ ] The user can see the total number of stories currently shown
 * [ ] The user can click a link at the bottom of the page to load the next 20 stories. The page does not refresh. 
 * [ ] The user can see how long ago the story was published in a human-friendly format; e.g. "15 minutes ago". 

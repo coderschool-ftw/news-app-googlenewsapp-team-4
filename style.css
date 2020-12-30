@@ -1,0 +1,11 @@
+.article {
+  height: 100%;
+}
+
+.article--cover {
+  background-size: cover;
+}
+
+.article--info {
+  color: rgb(91 112 131);
+}
