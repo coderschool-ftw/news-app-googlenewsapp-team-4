@@ -19,6 +19,7 @@ async function update() {
   render();
 }
 
+// https://momentjs.com/docs/#/displaying/fromnow/
 function renderArticleCard(article) {
   return `
   <div class="col-12 col-lg-4 my-3">
@@ -29,7 +30,7 @@ function renderArticleCard(article) {
         <div class="article--info mb-2">
           <span class="article--source">${article.source.name}</span>
           ·
-          <span class="article--published-at">${article.publishedAt}</span>
+          <span class="article--published-at">${moment(article.publishedAt).fromNow()}</span>
         </div>
         <div class="article--link">
           <a href="${article.url}">More</a>
