@@ -2,13 +2,32 @@ let newsArticles = [];
 
 const apiKey = '4d4ecf6a69b9425e822a25c3e7e88ed5';
 const apiRoot = 'http://newsapi.org'; 
-const apiEndpoint = '/v2/top-headlines';    // https://newsapi.org/docs/endpoints
-const queryString = "country=us\
-                      &language=en\
-                      &sortBy=publishedAt"
-                    .replace(/\s/g,'') + `&apiKey=${apiKey}`; // https://newsapi.org/docs/endpoints/top-headlines
 
-const url = `${apiRoot}${apiEndpoint}?${queryString}`;
+// https://newsapi.org/docs/endpoints
+const apiEndpoint = [
+  '/v2/top-headlines',
+  '/v2/everything'
+];    
+
+// Starting page is 1
+let page = 1; 
+
+let queryString = getQueryString();
+let url = getURL();
+
+// https://newsapi.org/docs/endpoints/top-headlines;
+function getQueryString() {
+  return "q=technology\
+            &language=en\
+            &sortBy=publishedAt"
+          .replace(/\s/g,'')
+          + `&page=${page}`
+          + `&apiKey=${apiKey}`;
+}
+
+function getURL() {
+  return `${apiRoot}${apiEndpoint[1]}?${queryString}`;
+}
 
 async function update() {
   const result = await fetch(url);
