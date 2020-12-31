@@ -1,4 +1,5 @@
 let newsArticles = [];
+let loadMoreButton = document.getElementById("load-more-button");
 
 const apiKey = '4d4ecf6a69b9425e822a25c3e7e88ed5';
 const apiRoot = 'http://newsapi.org'; 
@@ -69,6 +70,14 @@ function render() {
 
   resultArea.insertAdjacentHTML('beforeend', newsArticlesHTML);
 }
+
+function loadMore() {
+  page += 1;
+  queryString = getQueryString();
+  url = getURL();
+  update();
 }
 
 update();
+
+loadMoreButton.onclick = loadMore;

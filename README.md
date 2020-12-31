@@ -23,7 +23,7 @@ The following **required** functionalities are completed (this is a sample):
 * [x] The user can see a list of the 20 latest top news stories, loaded dynamically from our api
 * [x] For each story, the user sees a headline, the source, a link to more, and an image
 * [ ] The user can see the total number of stories currently shown
-* [ ] The user can click a link at the bottom of the page to load the next 20 stories. The page does not refresh. 
+* [x] The user can click a link at the bottom of the page to load the next 20 stories. The page does not refresh. 
 * [x] The user can see how long ago the story was published in a human-friendly format; e.g. "15 minutes ago". 
 
 The following **optional** features are implemented:
