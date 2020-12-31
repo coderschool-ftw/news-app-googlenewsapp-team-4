@@ -43,9 +43,13 @@ function renderArticleCard(article) {
 
 function render() {
   let resultArea = document.getElementById('results');
-  resultArea.innerHTML = newsArticles
-    .map((article) => renderArticleCard(article))
+  let newsArticlesHTML = newsArticles
+    .map((article) => 
+      renderArticleCard(article))
     .join('\n');
+
+  resultArea.insertAdjacentHTML('beforeend', newsArticlesHTML);
+}
 }
 
 update();
