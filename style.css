@@ -1,13 +1,27 @@
+:root {
+  --card-image-background-color: #cccccc;
+  --card-border-color: rgb(235, 238, 240);
+  --card-border-radius: 0.25rem;
+  --card-text-info-color: rgb(91 112 131);
+}
+
 .article {
   height: 100%;
+
+  border-color: var(--card-border-color);
 }
 
 .article--image {
-  background-color: #cccccc;  /* Fallback for broken image */ 
+  background-color: var(--card-image-background-color);                  /* Fallback for broken image */ 
   background-size: cover;
   background-position: center;
+
+  margin: -1px;                                 /* Overlay the article card border */ 
+  width: calc(100% + 2px);                      /* Added border left + right */
+  border: 1px solid var(--card-border-color);   /* Twitter's border color */
+  border-radius: var(--card-border-radius) var(--card-border-radius) 0 0;
 }
 
 .article--info {
-  color: rgb(91 112 131);
+  color: var(--card-text-info-color);
 }
