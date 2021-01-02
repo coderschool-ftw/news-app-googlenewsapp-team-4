@@ -10,15 +10,32 @@
       integrity="sha384-giJF6kkoqNQ00vy+HMDP7azOuL0xtbfIcaT9wjKHr8RbDVddVHyTfAAsrekwKmP1"
       crossorigin="anonymous"
     />
+    <!-- MOMENTJS CDN -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js"
+      integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ=="
+      crossorigin="anonymous"
+    ></script>
     <!-- STYLE SHEET -->
     <link rel="stylesheet" href="style.css" />
     <title>Team4 Google News App</title>
   </head>
   <body>
     <div class="container">
-      <div class="row">
+      <div class="row mt-5 mb-5">
         <div class="col">
           <h1 class="text-center">Team 4 Google News</h1>
+        </div>
+        <div class="col search-wrapper">
+          <!-- SEARCH FORM -->
+          <form class="search" action="">
+            <input
+              type="text"
+              class="input-box"
+              placeholder="search topic..."
+            />
+            <input type="submit" class="submit-btn" />
+          </form>
         </div>
       </div>
       <div id="results" class="row">

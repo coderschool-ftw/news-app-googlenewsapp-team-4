@@ -1,0 +1,19 @@
+#publishedDate {
+  color: rgb(196, 194, 194);
+  font-style: italic;
+}
+
+.search-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.input-box,
+.submit-btn {
+  border-radius: 5px;
+  border: 1px solid rgb(167, 167, 167);
+  padding: 0.3rem 0.7rem;
+  margin: 0 0.1rem;
+  color: rgb(77, 77, 77);
+}
