@@ -1,5 +1,7 @@
 let newsArticles = [];
 let resultArea = document.getElementById('results');
+
+let isFirstTimeUpdate = true;
 let loadMoreButton = document.getElementById("load-more-button");
 
 
@@ -47,9 +49,17 @@ async function update() {
     if (data.status === "ok") {
       newsArticles = data.articles;
       renderArticles(resultArea);
+      showLoadMoreButton(loadMoreButton);
     }
   } catch (error) {
     console.log("Something's wrong. Maybe it's your Wifi." + error);
+  }
+}
+
+function showLoadMoreButton(element) {
+  if (isFirstTimeUpdate) {
+    element.style.display = "block";
+    isFirstTimeUpdate = false;
   }
 }
 
@@ -93,6 +103,7 @@ function loadMore() {
   update();
 }
 
+// Load articles after visit page
 update();
 
 loadMoreButton.onclick = loadMore;

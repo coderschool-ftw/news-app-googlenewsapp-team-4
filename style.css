@@ -5,6 +5,10 @@
   --card-text-info-color: rgb(91 112 131);
 }
 
+html {
+  overflow-y: scroll; /* Prevent the scrollbar reposition the web page */
+}
+
 .article {
   height: 100%;
 
@@ -24,4 +28,8 @@
 
 .article--info {
   color: var(--card-text-info-color);
+}
+
+#load-more-button {
+  display: none;  /* Only show if article loaded */ 
 }
