@@ -9,6 +9,12 @@ html {
   overflow-y: scroll; /* Prevent the scrollbar reposition the web page */
 }
 
+.flex-center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 .article {
   height: 100%;
 

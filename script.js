@@ -131,7 +131,7 @@ async function update() {
 
 function showLoadMoreButton(element) {
   if (isFirstTimeUpdate) {
-    element.style.display = "block";
+    element.style.display = "flex";
     isFirstTimeUpdate = false;
   }
 }
