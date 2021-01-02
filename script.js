@@ -53,12 +53,11 @@ async function update() {
   }
 }
 
-// https://momentjs.com/docs/#/displaying/fromnow/
 function renderArticleCard(article) {
   return `
-  <div class="col-12 col-lg-4 my-3">
+  <article class="col-12 col-lg-4 my-3">
     <div class="card article">
-      <div class="ratio ratio-16x9 article--image" style="background-image: url(${article.urlToImage});"></div>
+      <div class="ratio ratio-16x9 article--image" style="background-image: url(${article.urlToImage || ""});"></div>
       <div class="card-body">
         <h5 class="card-title">${article.title}</h5>
         <div class="article--info mb-2">
@@ -71,9 +70,12 @@ function renderArticleCard(article) {
         </div>
       </div>
     </div>
-  </div>
+  </article>
 `;
 }
+// https://momentjs.com/docs/#/displaying/fromnow/
+// ${article.urlToImage || ""} => Prevent reference to null otherwise the browser will try to look for the image at localhost/null and the console will show an error GET http://localhost:5500/null 404 (Not Found)
+
 
 function renderArticles(element) {
   let newsArticlesHTML = newsArticles
