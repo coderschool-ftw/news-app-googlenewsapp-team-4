@@ -1,4 +1,5 @@
 let newsArticles = [];
+let resultArea = document.getElementById('results');
 let loadMoreButton = document.getElementById("load-more-button");
 
 
@@ -45,7 +46,7 @@ async function update() {
     const data = await result.json();
     if (data.status === "ok") {
       newsArticles = data.articles;
-      render();
+      renderArticles(resultArea);
     }
   } catch (error) {
     console.log("Something's wrong. Maybe it's your Wifi." + error);
@@ -74,14 +75,13 @@ function renderArticleCard(article) {
 `;
 }
 
-function render() {
-  let resultArea = document.getElementById('results');
+function renderArticles(element) {
   let newsArticlesHTML = newsArticles
     .map((article) => 
       renderArticleCard(article))
     .join('\n');
 
-  resultArea.insertAdjacentHTML('beforeend', newsArticlesHTML);
+  element.insertAdjacentHTML('beforeend', newsArticlesHTML);
 }
 
 function loadMore() {
