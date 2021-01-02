@@ -1,7 +1,16 @@
 let newsArticles = [];
 let loadMoreButton = document.getElementById("load-more-button");
 
-const apiKey = '4d4ecf6a69b9425e822a25c3e7e88ed5';
+
+const apiKeys = [
+  '4d4ecf6a69b9425e822a25c3e7e88ed5',
+  'b33510f07e8f4a5bbf0fce2f2bd4608e',
+  '09c3f6162e744605bf7da2267c5a0be3'
+];
+
+// var apiKey = apiKeys[0];
+var apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+
 const apiRoot = 'http://newsapi.org'; 
 
 // https://newsapi.org/docs/endpoints
