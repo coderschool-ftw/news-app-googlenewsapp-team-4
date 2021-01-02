@@ -19,33 +19,65 @@ const apiKeys = [
 // var apiKey = apiKeys[0];
 var apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
 
-const apiRoot = 'http://newsapi.org'; 
+let page = 1; // Starting page is 1
+let url;
 
-const apiEndpoint = [
-  '/v2/top-headlines',
-  '/v2/everything'
-];
-// https://newsapi.org/docs/endpoints
+/**
+ * This function use destructuring assignment to make it smart.
+ * It "has many parameters, most of which are optional". And we don't want to remember the order of arguments.
+ * https://javascript.info/destructuring-assignment#smart-function-parameters
+ * When call it, we need to pass an object - with only the properties we need - as the only argument.
+ * e.g.
+ * - getURL() -> The function will be invoked with all the default option.
+ * - getURL({ page }) -> page is the one we pass, other is default.
+ * - getURL({ endpoint: 0})
+ * - getURL({ q: 'Vietnam' })
+ */
+function getURL({
+  country = 'us',
+  q: qInTitle = 'vietnam', // Keywords or phrases to search for in the article title only. -> We should search only in the title, the article will be more relevant to the keyword.
+  page = 1, 
+  apiKey: key = apiKey, // We want to use the same property name - apiKey when pass to the function, so inside the function, we need to rename it to another name.
+  endpoint = 1,
+  sortBy = 'publishedAt',
+  language = 'en'
+} = {}) {
+  const apiRoot = 'http://newsapi.org'; 
 
-// Starting page is 1
-let page = 1; 
+  const apiEndpoint = [
+    '/v2/top-headlines',
+    '/v2/everything'
+  ];
+  // https://newsapi.org/docs/endpoints
 
-let queryString = getQueryString();
-let url = getURL();
+  let queryString;
 
-function getQueryString() {
-  return `q=technology
-            &language=en
-            &sortBy=publishedAt`
-          .replace(/\s/g,'')      // Because we break the query string into different lines, we need to replace all the space, new line with empty string to use it with fetch()
-          + `&page=${page}`
-          + `&apiKey=${apiKey}`;
+  // 2 endpoints have some different parameters
+  if (endpoint === 0) { // I still don't understand about top-headlines endpoint. Sometimes it show just a few results.
+    queryString = `
+      country=${country}
+      ${ typeof someVar !== 'undefined' ? `&category=${category}` : '' } /* This will only add the category parameter into queryString if we pass it to the function */
+    `;
+  } else if (endpoint === 1) {
+    queryString = `
+      qInTitle=${qInTitle}
+      &sortBy=${sortBy}
+    `;
+  }
+
+  queryString += `
+    &language=${language}
+    &page=${page}
+    &apiKey=${key}
+  `
+
+  queryString = queryString.replace(/\s/g,'');
+  // Because we break the query string into different lines,
+  // we need to remove all the spaces, new lines before use it with fetch()
+
+  return `${apiRoot}${apiEndpoint[endpoint]}?${queryString}`;
 }
 // https://newsapi.org/docs/endpoints/top-headlines;
-
-function getURL() {
-  return `${apiRoot}${apiEndpoint[1]}?${queryString}`;
-}
 
 async function update() {
   try { // Catch error in both fetch() and result.json() https://javascript.info/async-await#error-handling
@@ -153,12 +185,12 @@ function renderArticles(element) {
 }
 
 function loadMore() {
-  queryString = getQueryString();
-  url = getURL();
+  url = getURL({ page });
   update();
 }
 
 // Load articles after visit page
+url = getURL();
 update();
 
 loadMoreButton.onclick = loadMore;
