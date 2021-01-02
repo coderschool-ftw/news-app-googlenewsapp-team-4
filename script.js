@@ -8,6 +8,7 @@ let articlesCount = 0;
 let totalArticles = 0;
 let articlesInfo = document.getElementById("articles-info");
 
+let errorElement = document.getElementById("error");
 
 const apiKeys = [
   '4d4ecf6a69b9425e822a25c3e7e88ed5',
@@ -60,6 +61,36 @@ async function update() {
       renderArticles(resultArea);
       renderArticlesCount(articlesInfo);
       showLoadMoreButton(loadMoreButton);
+    } else if (data.status === "error") {
+      let message;
+
+      switch (data.code) {
+        case "maximumResultsReached":
+          message = `
+            <h1 class="alert-heading">🚧 STOP HERE 🛑</h1>
+            <p>We are showing you 100 articles for free.</p>
+            <hr>
+            <p class="mb-0">Still wanna more. Show we your 💳.</p>
+          `;
+          break;
+        case "rateLimited":
+          message = `
+            <h1 class="alert-heading">🤚 HEY, PLEASE TAKE A BREAK ⚠</h1>
+            <p>You are trying so hard.</p>
+            <hr>
+            <p class="mb-0">
+              Just take a break ... then change the API key
+              <a href="https://newsapi.org/register">(Register here)</a>.
+            </p>
+          `;
+          break;
+        default:
+          message = "Sorry. There's an error. But we haven't seen it before too!";
+          console.log(data);
+      }
+      
+      // console.log("message: " + message);
+      renderError(errorElement, message);
     }
   } catch (error) {
     console.log("Something's wrong. Maybe it's your Wifi." + error);
@@ -78,6 +109,16 @@ function renderArticlesCount(element) {
     <span>Showing <span class="fw-bold">${articlesCount}</span>/${totalArticles} articles.</span>
   `;
 }
+
+function renderError(element, message) {
+  element.innerHTML = `
+    <div class="alert alert-danger alert-dismissible fade show fs-3 text-center" role="alert">
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `;
+}
+
 function renderArticleCard(article) {
   return `
   <article class="col-12 col-lg-4 my-3">
