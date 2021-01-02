@@ -40,12 +40,16 @@ function getURL() {
 }
 
 async function update() {
-  const result = await fetch(url);
-  const data = await result.json();
-
-  newsArticles = data.articles;
-
-  render();
+  try { // Catch error in both fetch() and result.json() https://javascript.info/async-await#error-handling
+    const result = await fetch(url);
+    const data = await result.json();
+    if (data.status === "ok") {
+      newsArticles = data.articles;
+      render();
+    }
+  } catch (error) {
+    console.log("Something's wrong. Maybe it's your Wifi." + error);
+  }
 }
 
 // https://momentjs.com/docs/#/displaying/fromnow/
