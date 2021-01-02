@@ -13,11 +13,11 @@ var apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
 
 const apiRoot = 'http://newsapi.org'; 
 
-// https://newsapi.org/docs/endpoints
 const apiEndpoint = [
   '/v2/top-headlines',
   '/v2/everything'
-];    
+];
+// https://newsapi.org/docs/endpoints
 
 // Starting page is 1
 let page = 1; 
@@ -25,15 +25,15 @@ let page = 1;
 let queryString = getQueryString();
 let url = getURL();
 
-// https://newsapi.org/docs/endpoints/top-headlines;
 function getQueryString() {
-  return "q=technology\
-            &language=en\
-            &sortBy=publishedAt"
-          .replace(/\s/g,'')
+  return `q=technology
+            &language=en
+            &sortBy=publishedAt`
+          .replace(/\s/g,'')      // Because we break the query string into different lines, we need to replace all the space, new line with empty string to use it with fetch()
           + `&page=${page}`
           + `&apiKey=${apiKey}`;
 }
+// https://newsapi.org/docs/endpoints/top-headlines;
 
 function getURL() {
   return `${apiRoot}${apiEndpoint[1]}?${queryString}`;
