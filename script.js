@@ -3,6 +3,39 @@ let newsArticles = [];
 let isFirstTimeUpdate = true;
 let loadMoreButton = document.getElementById("load-more-button");
 
+let articlesCount = 0;
+let totalArticles = 0;
+let articlesInfo = document.getElementById("articles-info");
+
+let errorElement = document.getElementById("error");
+const errorMessages = {
+  maximumResultsReached: `
+    <h1 class="alert-heading">🚧 STOP HERE 🛑</h1>
+    <p>We are showing you 100 articles for free.</p>
+    <hr>
+    <p class="mb-0">Still wanna more. Show we your 💳.</p>
+  `,
+  rateLimited: `
+    <h1 class="alert-heading">🤚 HEY, PLEASE TAKE A BREAK ⚠</h1>
+    <p>You are trying so hard.</p>
+    <hr>
+    <p class="mb-0">
+      Just take a break ... then change the API key
+      <a href="https://newsapi.org/register">(Register here)</a>.
+    </p>
+  `,
+  default: `
+    <h1 class="alert-heading">Sorry. There's an error.</h1>
+    <p>And we haven't seen it before too!</p>
+  `,
+  fetchError: `
+    <h1 class="alert-heading">Something's wrong</h1>
+    <p>Maybe it's your Wifi.</p>
+    <hr>
+    <p>Or maybe you should go to <a href="localhostPlaceholder">localhost</a> instead.</p>
+  `
+};
+
 const searchForm = document.querySelector(".search");
 const input = document.querySelector(".input-box");
 
@@ -12,6 +45,10 @@ let submit = document.getElementById("submit");
 submit.addEventListener("click", () => {
   //sets initial page
   page = 1;
+
+  // Reset the articles info
+  articlesCount = 0;
+  totalArticles = 0;
 
   //set the user input value as a variable to use in the inital render and moreafter with the load more button
   searchTerm = input.value;
@@ -34,7 +71,15 @@ submit.addEventListener("click", () => {
   update();
 });
 
-const apiKey = "7c0b04dca86c473bab95e9b6f66d3f07";
+const apiKeys = [
+  '7c0b04dca86c473bab95e9b6f66d3f07',
+  '4d4ecf6a69b9425e822a25c3e7e88ed5',
+  'b33510f07e8f4a5bbf0fce2f2bd4608e',
+  '09c3f6162e744605bf7da2267c5a0be3'
+];
+// var apiKey = apiKeys[0];
+var apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+
 const apiRoot = "http://newsapi.org";
 
 // https://newsapi.org/docs/endpoints
@@ -69,13 +114,47 @@ function getURL() {
 }
 
 async function update() {
-  const result = await fetch(url);
-  const data = await result.json();
-  newsArticles = data.articles;
+  try { // Catch error in both fetch() and result.json() https://javascript.info/async-await#error-handling
+    const result = await fetch(url);
+    const data = await result.json();
+    if (data.status === "ok") {
+      newsArticles = data.articles;
 
-  //Render articles then show the load more button
-  render();
-  showLoadMoreButton(loadMoreButton);
+      page++; // We only increase the page after we receive new articles, not after we click the button
+
+      // Get the real articles count and total results from the response
+      articlesCount += data.articles.length; // Like when there is only some remained.
+      totalArticles = data.totalResults;
+
+      //Render articles, articles count, then show the load more button (if it is needed)
+      render();
+      renderArticlesCount(articlesInfo);
+      showLoadMoreButton(loadMoreButton);
+    } else if (data.status === "error") {
+      let message, alertType;
+
+      switch (data.code) {
+        case "maximumResultsReached":
+          message = errorMessages.maximumResultsReached;
+          alertType = 'danger';
+          break;
+        case "rateLimited":
+          message = errorMessages.rateLimited;
+          alertType = 'secondary';
+          break;
+        default:
+          message = errorMessages.default;
+          alertType = 'info';
+      }
+
+      renderError(errorElement, message, alertType);
+    }
+  } catch (error) {
+    let localhostAddress = window.location.href.replace("127.0.0.1", "localhost");
+    let fetchErrorMessage = errorMessages.fetchError;
+    fetchErrorMessage = fetchErrorMessage.replace("localhostPlaceholder", localhostAddress);
+    renderError(errorElement, fetchErrorMessage, 'warning');
+  }
 }
 
 function showLoadMoreButton(element) {
@@ -85,13 +164,28 @@ function showLoadMoreButton(element) {
   }
 }
 
+function renderArticlesCount(element) {
+  element.innerHTML = `
+    <span>Showing <span class="fw-bold">${articlesCount}</span>/${totalArticles} articles.</span>
+  `;
+}
+
+function renderError(element, message, alertType="danger") {
+  element.innerHTML = `
+    <div class="alert alert-${alertType} alert-dismissible fade show fs-3 text-center" role="alert">
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
+  `;
+}
+
 // https://momentjs.com/docs/#/displaying/fromnow/
 function renderArticleCard(article) {
   return `
-  <div class="col-12 col-lg-4 my-3">
+  <article class="col-12 col-lg-4 my-3">
     <div class="card article">
       <div class="ratio ratio-16x9 article--image" style="background-image: url(${
-        article.urlToImage
+        article.urlToImage || "" /* Prevent reference to null */
       });"></div>
       <div class="card-body"></div>
         <h5 class="card-title">${article.title}</h5>
@@ -106,7 +200,7 @@ function renderArticleCard(article) {
           <a href="${article.url}">More</a>
         </div>
       </div>
-    </div>
+    </article>
   </div>
 `;
 }
@@ -150,7 +244,6 @@ function loadMore() {
   // start += 20;
   // end += 20;
   // newsArticles.slice(start, end);
-  page++;
   queryString = getQueryString(searchTerm);
   url = getURL();
   update();

@@ -18,68 +18,76 @@
   </head>
 
   <body>
-    <div class="container mt-3">
-      <div class="row">
-        <div class="col-8">
-          <h1 class="text-center fw-bold">The T4 News</h1>
+    <header>
+      <div class="container">
+        <div class="row">
+          <div class="col-8">
+            <h1 class="text-center fw-bold">The T4 News</h1>
+          </div>
+          <!--START - SEARCH FORM -->
+          <div class="col-4 search-wrapper">
+            <form class="col">
+              <input
+                type="text"
+                id="input-search-term"
+                class="input-box"
+                placeholder="search topic..."
+              />
+            </form>
+            <!--SEARCH BUTTON -->
+            <div class="col">
+              <button id="submit" class="d-block">Search</button>
+            </div>
+          </div>
+          <!-- END - SEARCH FORM -->
         </div>
-        <!--START - SEARCH FORM -->
-        <div class="col-4 search-wrapper">
-          <form class="col">
-            <input
-              type="text"
-              id="input-search-term"
-              class="input-box"
-              placeholder="search topic..."
-            />
-          </form>
-          <!--SEARCH BUTTON -->
-          <div class="col">
-            <button id="submit" class="d-block">Search</button>
+        <!-- <div class="row">
+          <nav aria-label="article-page-numbers">
+            <ul class="pagination sm" id="ul">
+              <li class="page-item disabled" id="previousLi">
+                <a class="page-link" href="#" id="previousA">Previous</a>
+              </li>
+  
+              <li class="page-item" id="nextLi">
+                <a class="page-link" href="#" id="nextA">Next</a>
+              </li>
+            </ul>
+          </nav>
+        </div> -->
+      </div>
+    </header>
+    
+    <main class="container mt-3">
+      <section id="results" class="row">
+        <!-- ARTICLE CARDS CREATED IN JS -->
+      </section>
+    </main>
+
+    <footer>
+      <div class="container">
+        <div class="row">
+          <div class="mt-2 mb-4">
+            <div id="error"></div>
+            <div id="articles-info" class="position-absolute"></div>
+            <button id="load-more-button" class="btn btn-primary mx-auto mb-3">
+              Show more
+            </button>
           </div>
         </div>
-        <!-- END - SEARCH FORM -->
       </div>
-      <!-- <div class="row">
-        <nav aria-label="article-page-numbers">
-          <ul class="pagination sm" id="ul">
-            <li class="page-item disabled" id="previousLi">
-              <a class="page-link" href="#" id="previousA">Previous</a>
-            </li>
-
-            <li class="page-item" id="nextLi">
-              <a class="page-link" href="#" id="nextA">Next</a>
-            </li>
-          </ul>
-        </nav>
-      </div> -->
-      <div id="results" class="row">
-        <!-- ARTICLE CARDS CREATED IN JS -->
-      </div>
-      <div class="row">
-        <div>
-          <div id="article-count"></div>
-          <button id="load-more-button" class="btn btn-primary mx-auto mb-3">
-            Load more
-          </button>
-        </div>
-      </div>
-    </div>
-
-    <!-- Moment.js -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.js"
-      integrity="sha256-8AdWdyRXkrETyAGla9NmgkYVlqw4MOHR6sJJmtFGAYQ="
-      crossorigin="anonymous"
-    ></script>
-
-    <script src="script.js"></script>
-
-    <!-- Bootstrap Bundle with Popper -->
-    <script
-      src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
-      integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
-      crossorigin="anonymous"
-    ></script>
+    </footer>
+    
+    <section id="scripts">
+      <!-- Moment.js -->
+      <script src="https://cdn.jsdelivr.net/npm/moment@2.29.1/moment.js"
+        integrity="sha256-8AdWdyRXkrETyAGla9NmgkYVlqw4MOHR6sJJmtFGAYQ=" crossorigin="anonymous"></script>
+  
+      <script src="script.js"></script>
+  
+      <!-- Bootstrap Bundle with Popper -->
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta1/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ygbV9kiqUc6oa4msXn9868pTtWMgiQaeYH7/t7LECLbyPA2x65Kgf80OJFdroafW"
+        crossorigin="anonymous"></script>
+    </section>
   </body>
 </html>
