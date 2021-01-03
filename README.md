@@ -1,6 +1,6 @@
-# CoderSchool FTW - * Name of Your News MegaCorp Here *
+# CoderSchool FTW - * The T4 News *
 
-Created with love by: `teammates.map(teammate => teammate.name)`
+Created with love by: Thang, Prince, Jade
   
 View online at: `Your URL here`
   
@@ -35,7 +35,10 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] List anything else cool you did
+* [x] Render Article Title by user input (with search form and submit button)
+* [x] Render Headline Articles by Default
+* [x] Used regular expression to format query string 
+
 
 ## Time Spent and Lessons Learned
 
@@ -43,9 +46,39 @@ Time spent: **X** hours spent in total.
 
 Describe any challenges encountered while building the app.
 
+**TIME SPENT**
+
+
+**MAIN CHALENGES:** 
+* Using the Free version of newsapi.org, we ended up iterating through an array of api keys.
+* This is a project that was hard to split up different components to work independently.
+
+**Thang** - Handle/Catch error when fetching the request
+When trying to load the articles from 101 to 120 or more:
+- The Console's Source Tab show a red cross next to the fetch function.
+- The Console show there is an error with fetch.
+- In Network Tab, in response object, the status property is "error", the code property is "rateLimited".
+
+After that, when I tested the load more function too much (50 times):
+- The Console's Source Tab also show a red cross next to fetch function.
+- The console show a GET request with HTTP code 429 Too Many Requests.
+
+I've been so confused with all those code: response's object code, response's HTTP code.
+I tried to use try/catch to handle the latter case, but it didn't work. Although in the console, the HTTP code is show in red color and in the Source tab, there is a cross next to fetch, it's not an error for fetch, it's still a success request/respone?!?!?! Both of those case, we still receive a response object.
+
+**Prince** - understanding the difference between "request parameter" versus "response object", and when to use which appropriately. 
+
+**Prince & Jade** - understanding each other's code.
+
+**Jade** - everything, linking up all the components.
+
+
+**LESSONS LEARNED**
+
+
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2021] [Thang Prince Jade]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
