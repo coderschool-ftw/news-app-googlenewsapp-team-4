@@ -75,14 +75,15 @@ I tried to use try/catch to handle the latter case, but it didn't work. Although
 
 **Jade** - In a nutshell this project was a challenge in many ways. Such as:
 
-- Linking features: How to load more pages after user inputs a keyword, that changes the request parameter and then handle the response object/details appropriately.
+- Linking features: How to load more pages after the first page of user-input request. How to handle user request as well as the fetch response object/details appropriately.
   --SOLUTION: With Thang's knowledge and expertise, he was able to incorporate the search feature I created with his load more button logic.
-- Attempted to add a Carousel for Headline articles: Got stuck on trying to figure out how to iterate over an array of carousel items and display it properly. The issue is not yet resolved therefore it is not included in the project here.
+- Attempted to add a Carousel for Headline articles: Got stuck on trying to figure out how to iterate over an array of carousel items and display it properly. Status: to be resolved. Currently, not a feature within this project.
 
 
 **LESSONS LEARNED:**
 - Be open to ask each other for help as soon as any issues/problem arises.
 - To use liveshare in vscode more often, for debugging or team-work sessions.
+- (Jade) time management: prioritizing work and being selective with project features, to ensure project meets all requirements and deadline time frame.
 
 
 ## License
