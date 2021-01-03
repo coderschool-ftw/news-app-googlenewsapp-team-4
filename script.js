@@ -3,6 +3,10 @@ let newsArticles = [];
 let isFirstTimeUpdate = true;
 let loadMoreButton = document.getElementById("load-more-button");
 
+let articlesCount = 0;
+let totalArticles = 0;
+let articlesInfo = document.getElementById("articles-info");
+
 const searchForm = document.querySelector(".search");
 const input = document.querySelector(".input-box");
 
@@ -12,6 +16,10 @@ let submit = document.getElementById("submit");
 submit.addEventListener("click", () => {
   //sets initial page
   page = 1;
+
+  // Reset the articles info
+  articlesCount = 0;
+  totalArticles = 0;
 
   //set the user input value as a variable to use in the inital render and moreafter with the load more button
   searchTerm = input.value;
@@ -83,8 +91,15 @@ async function update() {
     if (data.status === "ok") {
       newsArticles = data.articles;
 
-      //Render articles then show the load more button
+      page++; // We only increase the page after we receive new articles, not after we click the button
+
+      // Get the real articles count and total results from the response
+      articlesCount += data.articles.length; // Like when there is only some remained.
+      totalArticles = data.totalResults;
+
+      //Render articles, articles count, then show the load more button (if it is needed)
       render();
+      renderArticlesCount(articlesInfo);
       showLoadMoreButton(loadMoreButton);
     }
   } catch (error) {
@@ -97,6 +112,12 @@ function showLoadMoreButton(element) {
     element.style.display = "flex";
     isFirstTimeUpdate = false;
   }
+}
+
+function renderArticlesCount(element) {
+  element.innerHTML = `
+    <span>Showing <span class="fw-bold">${articlesCount}</span>/${totalArticles} articles.</span>
+  `;
 }
 
 // https://momentjs.com/docs/#/displaying/fromnow/
@@ -164,7 +185,6 @@ function loadMore() {
   // start += 20;
   // end += 20;
   // newsArticles.slice(start, end);
-  page++;
   queryString = getQueryString(searchTerm);
   url = getURL();
   update();
