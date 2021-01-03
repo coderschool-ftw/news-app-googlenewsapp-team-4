@@ -35,7 +35,7 @@ submit.addEventListener("click", () => {
 });
 
 const apiKey = "7c0b04dca86c473bab95e9b6f66d3f07";
-const apiRoot = "http://newsapi.org";
+const apiRoot = "https://newsapi.org";
 
 // https://newsapi.org/docs/endpoints
 const apiEndpoint = ["/v2/top-headlines", "/v2/everything"];
