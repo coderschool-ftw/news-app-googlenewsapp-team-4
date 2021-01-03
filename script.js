@@ -7,6 +7,35 @@ let articlesCount = 0;
 let totalArticles = 0;
 let articlesInfo = document.getElementById("articles-info");
 
+let errorElement = document.getElementById("error");
+const errorMessages = {
+  maximumResultsReached: `
+    <h1 class="alert-heading">🚧 STOP HERE 🛑</h1>
+    <p>We are showing you 100 articles for free.</p>
+    <hr>
+    <p class="mb-0">Still wanna more. Show we your 💳.</p>
+  `,
+  rateLimited: `
+    <h1 class="alert-heading">🤚 HEY, PLEASE TAKE A BREAK ⚠</h1>
+    <p>You are trying so hard.</p>
+    <hr>
+    <p class="mb-0">
+      Just take a break ... then change the API key
+      <a href="https://newsapi.org/register">(Register here)</a>.
+    </p>
+  `,
+  default: `
+    <h1 class="alert-heading">Sorry. There's an error.</h1>
+    <p>And we haven't seen it before too!</p>
+  `,
+  fetchError: `
+    <h1 class="alert-heading">Something's wrong</h1>
+    <p>Maybe it's your Wifi.</p>
+    <hr>
+    <p>Or maybe you should go to <a href="localhostPlaceholder">localhost</a> instead.</p>
+  `
+};
+
 const searchForm = document.querySelector(".search");
 const input = document.querySelector(".input-box");
 
@@ -101,9 +130,30 @@ async function update() {
       render();
       renderArticlesCount(articlesInfo);
       showLoadMoreButton(loadMoreButton);
+    } else if (data.status === "error") {
+      let message, alertType;
+
+      switch (data.code) {
+        case "maximumResultsReached":
+          message = errorMessages.maximumResultsReached;
+          alertType = 'danger';
+          break;
+        case "rateLimited":
+          message = errorMessages.rateLimited;
+          alertType = 'secondary';
+          break;
+        default:
+          message = errorMessages.default;
+          alertType = 'info';
+      }
+
+      renderError(errorElement, message, alertType);
     }
   } catch (error) {
-    console.log("Something's wrong. Maybe it's your wifi. Or maybe you should go to localhost instead." + error);
+    let localhostAddress = window.location.href.replace("127.0.0.1", "localhost");
+    let fetchErrorMessage = errorMessages.fetchError;
+    fetchErrorMessage = fetchErrorMessage.replace("localhostPlaceholder", localhostAddress);
+    renderError(errorElement, fetchErrorMessage, 'warning');
   }
 }
 
@@ -117,6 +167,15 @@ function showLoadMoreButton(element) {
 function renderArticlesCount(element) {
   element.innerHTML = `
     <span>Showing <span class="fw-bold">${articlesCount}</span>/${totalArticles} articles.</span>
+  `;
+}
+
+function renderError(element, message, alertType="danger") {
+  element.innerHTML = `
+    <div class="alert alert-${alertType} alert-dismissible fade show fs-3 text-center" role="alert">
+      ${message}
+      <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+    </div>
   `;
 }
 
