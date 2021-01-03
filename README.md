@@ -46,14 +46,15 @@ Time spent: **X** hours spent in total.
 
 Describe any challenges encountered while building the app.
 
-**TIME SPENT**
+**TIME SPENT:**
 
 
-**MAIN CHALENGES:** 
-* Using the Free version of newsapi.org, we ended up iterating through an array of api keys.
-* This is a project that was hard to split up different components to work independently.
+**MAIN CHALLENGES:** 
+* Using the Free version of newsapi.org, we almost ended up writing a function to interate over an array of api keys.
+* This is a project that was hard to split up different components to work on independently.
 
 **Thang** - Handle/Catch error when fetching the request
+
 When trying to load the articles from 101 to 120 or more:
 - The Console's Source Tab show a red cross next to the fetch function.
 - The Console show there is an error with fetch.
@@ -68,12 +69,17 @@ I tried to use try/catch to handle the latter case, but it didn't work. Although
 
 **Prince** - understanding the difference between "request parameter" versus "response object", and when to use which appropriately. 
 
-**Prince & Jade** - understanding each other's code.
+**Prince & Jade** - understanding each other's code
 
-**Jade** - everything, linking up all the components.
+**Jade** - In a nutshell this project was a challenge in many ways. Such as:
+
+- Linking features: How to load more pages after user inputs a keyword, that changes the request parameter and then handle the response object/details appropriately.
+- Attempted to add a Carousel for Headline articles: Got stuck on trying to figure out how to iterate over an array of carousel items and display it properly. The issue is not yet resolved therefore it is not included in the project here.
 
 
-**LESSONS LEARNED**
+**LESSONS LEARNED:**
+- Be open to ask each other for help as soon as any issues/problem arises.
+- To use liveshare in vscode more often, for debugging or team-work sessions.
 
 
 ## License
