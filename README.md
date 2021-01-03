@@ -53,6 +53,8 @@ Describe any challenges encountered while building the app.
 * Using the Free version of newsapi.org, we almost ended up writing a function to interate over an array of api keys.
 * This is a project that was hard to split up different components to work on independently.
 
+**INDIVIDUAL CHALLENGE(S):**
+
 **Thang** - Handle/Catch error when fetching the request
 
 When trying to load the articles from 101 to 120 or more:
