@@ -22,6 +22,34 @@ var apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
 let page = 1; // Starting page is 1
 let url;
 
+const errorMessages = {
+  maximumResultsReached: `
+    <h1 class="alert-heading">🚧 STOP HERE 🛑</h1>
+    <p>We are showing you 100 articles for free.</p>
+    <hr>
+    <p class="mb-0">Still wanna more. Show we your 💳.</p>
+  `,
+  rateLimited: `
+    <h1 class="alert-heading">🤚 HEY, PLEASE TAKE A BREAK ⚠</h1>
+    <p>You are trying so hard.</p>
+    <hr>
+    <p class="mb-0">
+      Just take a break ... then change the API key
+      <a href="https://newsapi.org/register">(Register here)</a>.
+    </p>
+  `,
+  default: `
+    <h1 class="alert-heading">Sorry. There's an error.</h1>
+    <p>And we haven't seen it before too!</p>
+  `,
+  fetchError: `
+    <h1 class="alert-heading">Something's wrong</h1>
+    <p>Maybe it's your Wifi.</p>
+    <hr>
+    <p>Or maybe you should go to <a href="localhostPlaceholder">localhost</a> instead.</p>
+  `
+};
+
 /**
  * This function use destructuring assignment to make it smart.
  * It "has many parameters, most of which are optional". And we don't want to remember the order of arguments.
@@ -93,39 +121,31 @@ async function update() {
       renderArticles(resultArea);
       renderArticlesCount(articlesInfo);
       showLoadMoreButton(loadMoreButton);
+
     } else if (data.status === "error") {
-      let message;
+      let message, alertType;
 
       switch (data.code) {
         case "maximumResultsReached":
-          message = `
-            <h1 class="alert-heading">🚧 STOP HERE 🛑</h1>
-            <p>We are showing you 100 articles for free.</p>
-            <hr>
-            <p class="mb-0">Still wanna more. Show we your 💳.</p>
-          `;
+          message = errorMessages.maximumResultsReached;
+          alertType = 'danger';
           break;
         case "rateLimited":
-          message = `
-            <h1 class="alert-heading">🤚 HEY, PLEASE TAKE A BREAK ⚠</h1>
-            <p>You are trying so hard.</p>
-            <hr>
-            <p class="mb-0">
-              Just take a break ... then change the API key
-              <a href="https://newsapi.org/register">(Register here)</a>.
-            </p>
-          `;
+          message = errorMessages.rateLimited;
+          alertType = 'secondary';
           break;
         default:
-          message = "Sorry. There's an error. But we haven't seen it before too!";
-          console.log(data);
+          message = errorMessages.default;
+          alertType = 'info';
       }
       
-      // console.log("message: " + message);
-      renderError(errorElement, message);
+      renderError(errorElement, message, alertType);
     }
   } catch (error) {
-    console.log("Something's wrong. Maybe it's your Wifi." + error);
+    let localhostAddress = window.location.href.replace("127.0.0.1", "localhost");
+    let fetchErrorMessage = errorMessages.fetchError;
+    fetchErrorMessage = fetchErrorMessage.replace("localhostPlaceholder", localhostAddress);
+    renderError(errorElement, fetchErrorMessage, 'warning');
   }
 }
 
@@ -142,9 +162,9 @@ function renderArticlesCount(element) {
   `;
 }
 
-function renderError(element, message) {
+function renderError(element, message, alertType="danger") {
   element.innerHTML = `
-    <div class="alert alert-danger alert-dismissible fade show fs-3 text-center" role="alert">
+    <div class="alert alert-${alertType} alert-dismissible fade show fs-3 text-center" role="alert">
       ${message}
       <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
