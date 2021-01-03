@@ -41,7 +41,23 @@ const input = document.getElementById("input-search-term");
 let searchTerm; // We need to save the search term so the load more button know what to put in the url
 
 let submit = document.getElementById("submit");
-submit.addEventListener("click", () => {
+submit.addEventListener("click", handleSearch); // Search when click the button
+input.addEventListener("keyup", (event) => {    // Search when press enter key
+  console.log(input.value.length);
+  if (input.value.length === 0) {
+    submit.disabled = true;   // Disable the button if there nothing in the search bar
+  } else {
+    submit.disabled = false;
+
+    if (event.key === "Enter") {   // Only check for the enter if there is something to search
+      handleSearch();
+    }
+  }
+});
+
+input.focus(); // Ready to type when load the page
+
+function handleSearch() {
   //sets initial page
   page = 1;
 
@@ -68,7 +84,7 @@ submit.addEventListener("click", () => {
 
   //page is updated
   update();
-});
+}
 
 const apiKeys = [
   '7c0b04dca86c473bab95e9b6f66d3f07',
