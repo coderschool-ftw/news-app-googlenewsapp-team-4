@@ -187,7 +187,7 @@ function renderArticleCard(article) {
       <div class="ratio ratio-16x9 article--image" style="background-image: url(${
         article.urlToImage || "" /* Prevent reference to null */
       });"></div>
-      <div class="card-body"></div>
+      <div class="card-body">
         <h5 class="card-title">${article.title}</h5>
         <div class="article--info mb-2">
           <span class="article--source">${article.source.name}</span>
@@ -200,8 +200,8 @@ function renderArticleCard(article) {
           <a href="${article.url}">More</a>
         </div>
       </div>
-    </article>
-  </div>
+    </div>
+  </article>
 `;
 }
 
