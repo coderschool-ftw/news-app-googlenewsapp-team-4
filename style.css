@@ -10,8 +10,7 @@ html {
 }
 
 body {
-  margin: 0;
-  padding: 0;
+  padding: 1rem;
 }
 
 .article {
@@ -41,15 +40,6 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.input-box,
-#submit {
-  border-radius: 5px;
-  border: 1px solid rgb(167, 167, 167);
-  padding: 0.3rem 0.7rem;
-  margin: 0 0.1rem;
-  color: rgb(77, 77, 77);
 }
 
 #load-more-button {
