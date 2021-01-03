@@ -2,7 +2,7 @@
 
 Created with love by: Thang, Prince, Jade
   
-View online at: `Your URL here`
+View online at: the-t4-news.netlify.app
   
 One or two sentence summary of your project, anything fun that you liked.
 
