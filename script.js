@@ -36,8 +36,7 @@ const errorMessages = {
   `
 };
 
-const searchForm = document.querySelector(".search");
-const input = document.querySelector(".input-box");
+const input = document.getElementById("input-search-term");
 
 let searchTerm; // We need to save the search term so the load more button know what to put in the url
 
@@ -105,7 +104,7 @@ function getQueryString(param1) {
     `&page=${page}` +
     `&apiKey=${apiKey}`;
 
-  console.log(queryString);
+  // console.log(queryString);
   return queryString;
 }
 
