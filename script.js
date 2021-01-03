@@ -4,6 +4,10 @@ let resultArea = document.getElementById('results');
 let isFirstTimeUpdate = true;
 let loadMoreButton = document.getElementById("load-more-button");
 
+let articlesCount = 0;
+let totalArticles = 0;
+let articlesInfo = document.getElementById("articles-info");
+
 
 const apiKeys = [
   '4d4ecf6a69b9425e822a25c3e7e88ed5',
@@ -48,7 +52,13 @@ async function update() {
     const data = await result.json();
     if (data.status === "ok") {
       newsArticles = data.articles;
+
+      page += 1;
+      articlesCount += data.articles.length;
+      totalArticles = data.totalResults;
+
       renderArticles(resultArea);
+      renderArticlesCount(articlesInfo);
       showLoadMoreButton(loadMoreButton);
     }
   } catch (error) {
@@ -63,6 +73,11 @@ function showLoadMoreButton(element) {
   }
 }
 
+function renderArticlesCount(element) {
+  element.innerHTML = `
+    <span>Showing <span class="fw-bold">${articlesCount}</span>/${totalArticles} articles.</span>
+  `;
+}
 function renderArticleCard(article) {
   return `
   <article class="col-12 col-lg-4 my-3">
@@ -97,7 +112,6 @@ function renderArticles(element) {
 }
 
 function loadMore() {
-  page += 1;
   queryString = getQueryString();
   url = getURL();
   update();
