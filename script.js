@@ -34,7 +34,15 @@ submit.addEventListener("click", () => {
   update();
 });
 
-const apiKey = "7c0b04dca86c473bab95e9b6f66d3f07";
+const apiKeys = [
+  '7c0b04dca86c473bab95e9b6f66d3f07',
+  '4d4ecf6a69b9425e822a25c3e7e88ed5',
+  'b33510f07e8f4a5bbf0fce2f2bd4608e',
+  '09c3f6162e744605bf7da2267c5a0be3'
+];
+// var apiKey = apiKeys[0];
+var apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
+
 const apiRoot = "http://newsapi.org";
 
 // https://newsapi.org/docs/endpoints
