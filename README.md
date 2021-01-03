@@ -50,7 +50,7 @@ Describe any challenges encountered while building the app.
 
 
 **MAIN CHALLENGES:** 
-* Using the Free version of newsapi.org, we almost ended up writing a function to interate over an array of api keys.
+* Using the Free version of newsapi.org, we almost ended up writing a function to interate over an array of api keys. SOLUTION: Change the date in "from=...." will (temporarily) help fetch data.
 * This is a project that was hard to split up different components to work on independently.
 
 **INDIVIDUAL CHALLENGE(S):**
@@ -76,6 +76,7 @@ I tried to use try/catch to handle the latter case, but it didn't work. Although
 **Jade** - In a nutshell this project was a challenge in many ways. Such as:
 
 - Linking features: How to load more pages after user inputs a keyword, that changes the request parameter and then handle the response object/details appropriately.
+  --SOLUTION: With Thang's knowledge and expertise, he was able to incorporate the search feature I created with his load more button logic.
 - Attempted to add a Carousel for Headline articles: Got stuck on trying to figure out how to iterate over an array of carousel items and display it properly. The issue is not yet resolved therefore it is not included in the project here.
 
 
