@@ -102,10 +102,10 @@ function showLoadMoreButton(element) {
 // https://momentjs.com/docs/#/displaying/fromnow/
 function renderArticleCard(article) {
   return `
-  <div class="col-12 col-lg-4 my-3">
+  <article class="col-12 col-lg-4 my-3">
     <div class="card article">
       <div class="ratio ratio-16x9 article--image" style="background-image: url(${
-        article.urlToImage
+        article.urlToImage || "" /* Prevent reference to null */
       });"></div>
       <div class="card-body"></div>
         <h5 class="card-title">${article.title}</h5>
@@ -120,7 +120,7 @@ function renderArticleCard(article) {
           <a href="${article.url}">More</a>
         </div>
       </div>
-    </div>
+    </article>
   </div>
 `;
 }
