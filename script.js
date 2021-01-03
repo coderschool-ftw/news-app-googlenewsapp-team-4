@@ -77,13 +77,19 @@ function getURL() {
 }
 
 async function update() {
-  const result = await fetch(url);
-  const data = await result.json();
-  newsArticles = data.articles;
+  try { // Catch error in both fetch() and result.json() https://javascript.info/async-await#error-handling
+    const result = await fetch(url);
+    const data = await result.json();
+    if (data.status === "ok") {
+      newsArticles = data.articles;
 
-  //Render articles then show the load more button
-  render();
-  showLoadMoreButton(loadMoreButton);
+      //Render articles then show the load more button
+      render();
+      showLoadMoreButton(loadMoreButton);
+    }
+  } catch (error) {
+    console.log("Something's wrong. Maybe it's your wifi. Or maybe you should go to localhost instead." + error);
+  }
 }
 
 function showLoadMoreButton(element) {
