@@ -5,7 +5,11 @@
   --card-text-info-color: rgb(91 112 131);
 }
 
-* {
+html {
+  overflow-y: scroll; /* Prevent the scrollbar reposition the web page */
+}
+
+body {
   margin: 0;
   padding: 0;
 }
