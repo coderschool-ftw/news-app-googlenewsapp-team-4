@@ -50,7 +50,7 @@ Describe any challenges encountered while building the app.
 
 
 **MAIN CHALLENGES:** 
-* Using the Free version of newsapi.org, we almost ended up writing a function to interate over an array of api keys. SOLUTION: Change the date in "from=...." will (temporarily) help fetch data.
+* Using the Free version of newsapi.org, we almost ended up writing a function to interate over an array of api keys. SOLUTION: Change the date in "from=...." within the URL will (temporarily) help fetch data.
 * This is a project that was hard to split up different components to work on independently.
 
 **INDIVIDUAL CHALLENGE(S):**
