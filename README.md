@@ -18,6 +18,7 @@ Here's a walkthrough of implemented user stories.
 
 To create a GIF, use [LiceCap](http://www.cockos.com/licecap/), [RecordIt](http://www.recordit.co), or [Loom](http://www.useloom.com), and link the image here in the markdown.
 
+Link: [https://www.loom.com/share/445095d87d334e579170d0543177a511] (https://www.loom.com/share/445095d87d334e579170d0543177a511)
 ```
 <img src='https://www.loom.com/share/445095d87d334e579170d0543177a511' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 ```
