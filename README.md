@@ -1,6 +1,12 @@
 # CoderSchool FTW - * The T4 News *
 
 Created with love by: Thang, Prince, Jade
+
+**Thang:** Main Developer
+
+**Prince:** Product Owner/Developer
+
+**Jade:** Scrum Master/Developer
   
 View online at: [the-t4-news.netlify.app](the-t4-news.netlify.app) (In order to fetch data from newsapi.org, open this link in MOZILLA FIREFOX)
   
