@@ -95,7 +95,7 @@ const apiKeys = [
 // var apiKey = apiKeys[0];
 var apiKey = apiKeys[Math.floor(Math.random() * apiKeys.length)];
 
-const apiRoot = "http://newsapi.org";
+const apiRoot = "https://cors-anywhere.herokuapp.com/http://newsapi.org";
 
 // https://newsapi.org/docs/endpoints
 const apiEndpoint = ["/v2/top-headlines", "/v2/everything"];
