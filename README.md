@@ -2,7 +2,7 @@
 
 Created with love by: Thang, Prince, Jade
   
-View online at: [the-t4-news.netlify.app](the-t4-news.netlify.app)
+View online at: [the-t4-news.netlify.app](the-t4-news.netlify.app) (In order to fetch data from newsapi.org, open this link in MOZILLA FIREFOX)
   
 The T4 News provide users with a news search engine for the latest, and most relevant, topic of choice. By keyword search and added features like filter by sources from bbc-news, cnn, or spiegel-de, as well as loading up to 100 articles, will ensure user's nerd-satisfaction.
 
