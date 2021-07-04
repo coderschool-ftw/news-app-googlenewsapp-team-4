@@ -1,10 +1,16 @@
-# CoderSchool FTW - * Name of Your News MegaCorp Here *
+# CoderSchool FTW - * The T4 News *
 
-Created with love by: `teammates.map(teammate => teammate.name)`
+Created with love by: Thang, Prince, Jade
+
+**Thang:** Main Developer
+
+**Prince:** Product Owner/Developer
+
+**Jade:** Scrum Master/Developer
   
-View online at: `Your URL here`
+View online at: [the-t4-news.netlify.app](the-t4-news.netlify.app) (In order to fetch data from newsapi.org, open this link in MOZILLA FIREFOX)
   
-One or two sentence summary of your project, anything fun that you liked. 
+The T4 News provide users with a news search engine for the latest, and most relevant, topic of choice. By keyword search and added features like filter by sources from bbc-news, cnn, or spiegel-de, as well as loading up to 100 articles, will ensure user's nerd-satisfaction.
 
 ## Video Walkthrough
 
@@ -12,19 +18,21 @@ Here's a walkthrough of implemented user stories.
 
 To create a GIF, use [LiceCap](http://www.cockos.com/licecap/), [RecordIt](http://www.recordit.co), or [Loom](http://www.useloom.com), and link the image here in the markdown.
 
+[Watch the walkthrough](https://www.loom.com/share/445095d87d334e579170d0543177a511)
+[https://www.loom.com/share/445095d87d334e579170d0543177a511]
 ```
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://www.loom.com/share/445095d87d334e579170d0543177a511' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 ```
 
 ## User Stories
 
 The following **required** functionalities are completed (this is a sample):
 
-* [ ] The user can see a list of the 20 latest top news stories, loaded dynamically from our api
-* [ ] For each story, the user sees a headline, the source, a link to more, and an image
-* [ ] The user can see the total number of stories currently shown
-* [ ] The user can click a link at the bottom of the page to load the next 20 stories. The page does not refresh. 
-* [ ] The user can see how long ago the story was published in a human-friendly format; e.g. "15 minutes ago". 
+* [x] The user can see a list of the 20 latest top news stories, loaded dynamically from our api
+* [x] For each story, the user sees a headline, the source, a link to more, and an image
+* [x] The user can see the total number of stories currently shown
+* [x] The user can click a link at the bottom of the page to load the next 20 stories. The page does not refresh. 
+* [x] The user can see how long ago the story was published in a human-friendly format; e.g. "15 minutes ago". 
 
 The following **optional** features are implemented:
 
@@ -35,7 +43,10 @@ The following **optional** features are implemented:
 
 The following **additional** features are implemented:
 
-* [x] List anything else cool you did
+* [x] Render Article Title by user input (with search form and submit button)
+* [x] Render Headline Articles by Default
+* [x] Used regular expression to format query string 
+
 
 ## Time Spent and Lessons Learned
 
@@ -43,9 +54,49 @@ Time spent: **X** hours spent in total.
 
 Describe any challenges encountered while building the app.
 
+**TIME SPENT:**
+
+
+**MAIN CHALLENGES:** 
+* Using the Free version of newsapi.org, we almost ended up writing a function to interate over an array of api keys. SOLUTION: Change the date in "from=...." within the URL will (temporarily) help fetch data.
+* This is a project that was hard to split up different components to work on independently.
+
+**INDIVIDUAL CHALLENGE(S):**
+
+**Thang** - Handle/Catch error when fetching the request
+
+When trying to load the articles from 101 to 120 or more:
+- The Console's Source Tab show a red cross next to the fetch function.
+- The Console show there is an error with fetch.
+- In Network Tab, in response object, the status property is "error", the code property is "rateLimited".
+
+After that, when I tested the load more function too much (50 times):
+- The Console's Source Tab also show a red cross next to fetch function.
+- The console show a GET request with HTTP code 429 Too Many Requests.
+
+I've been so confused with all those code: response's object code, response's HTTP code.
+I tried to use try/catch to handle the latter case, but it didn't work. Although in the console, the HTTP code is show in red color and in the Source tab, there is a cross next to fetch, it's not an error for fetch, it's still a success request/respone?!?!?! Both of those case, we still receive a response object.
+
+**Prince** - understanding the difference between "request parameter" versus "response object", and when to use which appropriately. 
+
+**Prince & Jade** - understanding each other's code
+
+**Jade** - In a nutshell this project was a challenge in many ways. Such as:
+
+- Linking features: How to load more pages after the first page of user-input request. How to handle user request as well as the fetch response object/details appropriately.
+  --SOLUTION: With Thang's knowledge and expertise, he was able to incorporate the search feature I created with his load more button logic.
+- Attempted to add a Carousel for Headline articles: Got stuck on trying to figure out how to iterate over an array of carousel items and display it properly. Status: to be resolved. Currently, not a feature within this project.
+
+
+**LESSONS LEARNED:**
+- Be open to ask each other for help as soon as any issues/problem arises.
+- To use liveshare in vscode more often, for debugging or team-work sessions.
+- (Jade) time management: prioritizing work and being selective with project features, to ensure project meets all requirements and deadline time frame.
+
+
 ## License
 
-    Copyright [yyyy] [name of copyright owner]
+    Copyright [2021] [Thang Prince Jade]
 
     Licensed under the Apache License, Version 2.0 (the "License");
     you may not use this file except in compliance with the License.
